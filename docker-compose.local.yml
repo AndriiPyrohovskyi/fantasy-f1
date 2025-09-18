@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  php:
+    image: fantasy-f1/php
+    container_name: fantasy-f1-php
+    volumes:
+      - .:/var/www
+    networks:
+      - fantasy-f1
+
+  nginx:
+    image: fantasy-f1/nginx
+    container_name: fantasy-f1-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www
+    depends_on:
+      - php
+    networks:
+      - fantasy-f1
+
+  mysql:
+    image: mysql:8.0
+    container_name: fantasy-f1-mysql
+    environment:
+      MYSQL_DATABASE: fantasy_f1
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - fantasy-f1
+
+networks:
+  fantasy-f1:
+    driver: bridge
+
+volumes:
+  mysql_data:

@@ -4,13 +4,13 @@ services:
   php:
     build:
       context: .
-      dockerfile: .docker/php/dockerfile
+      dockerfile: .docker/php/Dockerfile
     image: fantasy-f1/php
-    container_name: fantasy-f1-php
+    container_name: fantasy-f1-php-build
 
-    nginx:
-      build:
-        context: .docker/nginx
-        dockerfile: dockerfile
-      image: fantasy-f1/nginx
-      container_name: fantasy-f1-nginx
+  nginx:
+    build:
+      context: .docker/nginx
+      dockerfile: Dockerfile
+    image: fantasy-f1/nginx
+    container_name: fantasy-f1-nginx-build
