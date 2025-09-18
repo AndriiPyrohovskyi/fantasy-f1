@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: .docker/php/dockerfile
+    image: fantasy-f1/php
+    container_name: fantasy-f1-php
+
+    nginx:
+      build:
+        context: .docker/nginx
+        dockerfile: dockerfile
+      image: fantasy-f1/nginx
+      container_name: fantasy-f1-nginx
