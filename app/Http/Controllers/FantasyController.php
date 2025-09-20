@@ -6,19 +6,19 @@ use Illuminate\Http\Request;
 
 class FantasyController extends Controller
 {
-    public function dashboard()
+    public function fantasy()
     {
-        return view('fantasy.dashboard', [
-            'title' => 'Fantasy F1 Dashboard'
+        return view('fantasy.fantasy', [
+            'title' => 'F1',
         ]);
     }
     public function drivers()
     {
         $drivers = [
-            ['name' => 'Max Verstappen', 'team' => 'Red Bull', 'points' => 575, 'price' => 32.5],
-            ['name' => 'Lando Norris', 'team' => 'McLaren', 'points' => 356, 'price' => 28.0],
-            ['name' => 'Charles Leclerc', 'team' => 'Ferrari', 'points' => 308, 'price' => 26.5],
-            ['name' => 'Oscar Piastri', 'team' => 'McLaren', 'points' => 292, 'price' => 24.0],
+            ['name' => 'Max Verstappen', 'team' => 'Red Bull'],
+            ['name' => 'Lando Norris', 'team' => 'McLaren'],
+            ['name' => 'Charles Leclerc', 'team' => 'Ferrari'],
+            ['name' => 'Oscar Piastri', 'team' => 'McLaren'],
         ];
 
         return view('fantasy.drivers', [
@@ -29,11 +29,18 @@ class FantasyController extends Controller
     public function teams()
     {
         $teams = [
+            ['name' => 'McLaren', 'drivers' => [['name' => 'Lando Norris'], ['name' => 'Oscar Piastri']]]
         ];
 
         return view('fantasy.teams', [
             'title' => 'F1 Teams',
             'teams' => $teams
+        ]);
+    }
+    public function races()
+    {
+        return view('fantasy.races', [
+            'title' => 'F1',
         ]);
     }
     public function leaderboard()
@@ -42,12 +49,10 @@ class FantasyController extends Controller
             'title' => 'Fantasy Leaderboard'
         ]);
     }
-
     public function skills()
     {
-        return response()->json([
-            'message' => 'Driver skills API',
-            'skills' => []
+        return view('fantasy.skills', [
+            'title' => 'F1',
         ]);
     }
 }

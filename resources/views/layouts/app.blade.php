@@ -8,13 +8,12 @@
 </head>
 <body class="bg-gray-50">
     <x-header />
-    {{-- <x-nav /> --}}
 
     <main class="container mx-auto px-4 py-6">
         <h1 class="text-3xl font-bold mb-6 text-gray-800">{{ $title ?? 'Fantasy F1' }}</h1>
         @yield('content')
     </main>
 
-    {{-- <x-footer /> --}}
+    <x-footer />
 </body>
 </html>
