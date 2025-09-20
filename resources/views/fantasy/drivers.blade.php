@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<p>Choose your drivers for the fantasy team:</p>
+<p class="text-gray-600 mb-6">Choose your drivers for the fantasy team:</p>
 
-@foreach($drivers as $driver)
-<div class="card driver">
-    <h3>{{ $driver['name'] }}</h3>
-    <p><strong>Team:</strong> {{ $driver['team'] }}</p>
-    <p><strong>Points:</strong> {{ $driver['points'] }}</p>
-    <p><strong>Price:</strong> ${{ $driver['price'] }}M</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @foreach($drivers as $driver)
+        <x-driver-card
+            :name="$driver['name']"
+            :team="$driver['team']"
+            :points="$driver['points']"
+            :price="$driver['price']"
+        />
+    @endforeach
 </div>
-@endforeach
 @endsection
