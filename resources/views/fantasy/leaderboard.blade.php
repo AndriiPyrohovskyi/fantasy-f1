@@ -4,6 +4,12 @@
 <div class="card">
     <h2>Fantasy Leaderboard</h2>
     <p>Top fantasy teams will be displayed here.</p>
-    <p><em>Feature coming soon...</em></p>
+    @foreach ($leaderboard as $user)
+        <x-leaderboard-card
+            :place="$user['place']"
+            :username="$user['username']"
+            :points="$user['points']"
+        />
+    @endforeach
 </div>
 @endsection

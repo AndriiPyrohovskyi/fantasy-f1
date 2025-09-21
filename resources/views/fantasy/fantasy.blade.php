@@ -1,8 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<p class="text-gray-600 mb-6">Choose your drivers for the fantasy team:</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Drivers Section -->
+    <div>
+        <h2 class="text-2xl font-bold mb-4">Ваші гонщики</h2>
+        @foreach($drivers as $driver)
+            <x-fantasy-driver-card :driver="$driver" />
+        @endforeach
+    </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Team Section -->
+    <div>
+        <h2 class="text-2xl font-bold mb-4">Ваша команда</h2>
+        <x-fantasy-team-card :team="$team" />
+    </div>
 </div>
 @endsection
