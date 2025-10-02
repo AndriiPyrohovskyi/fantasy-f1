@@ -13,7 +13,6 @@ class QueryModeMiddleware
         if ($request->query('mode') !== 'debug') {
             return response('Access denied. Add ?mode=debug parameter', 403);
         }
-
         return $next($request);
     }
 }

@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'karma',
+        'is_admin',
+        'bio',
+        'avatar'
     ];
 
     /**
@@ -43,6 +47,34 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class)->orderBy('created_at', 'desc');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function updateKarma()
+    {
+        $postLikes = $this->posts()->sum('likes_count');
+        $this->karma = $postLikes;
+        $this->save();
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
     }
 }
